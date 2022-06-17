@@ -44,15 +44,18 @@ const { remote } = require('webdriverio');
             let header = document.querySelector('#main-header')
             header.remove()
         })
-        await browser.pause(500)
-        //the screenshot will be stored in folder screenshots
-        //with name number of i + .png
-        let title = `screenshots/${i}.png`
 
         //some (longer) text is only loaded after you scroll down
-        //after scrolling wait 2 sec for consistency
+        //after scrolling wait 3 sec for consistency
         await footer.scrollIntoView()
-        await browser.pause(2000)
+        await browser.pause(3000)
+
+        //the screenshot will be stored in folder screenshots
+        //with name number of the href accessed
+        //find the last backslash
+        let lastSlash = links[i].lastIndexOf('/')
+        //cut out the title after the last backslash (otherwise path is invalid)
+        let title = 'screenshots/' + links[i].slice(lastSlash+1) + '.png'
 
         //take a screenshot - saves as title
         await browser.saveScreenshot(title)
