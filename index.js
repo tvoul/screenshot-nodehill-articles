@@ -55,6 +55,7 @@ const { remote } = require('webdriverio');
         //find the last backslash
         let lastSlash = links[i].lastIndexOf('/')
         //cut out the title after the last backslash (otherwise path is invalid)
+        //i added to title so they are stored in order, newest to oldest
         let title = 'screenshots/' + i + '-' + links[i].slice(lastSlash+1) + '.png'
 
         //take a screenshot - saves as title
